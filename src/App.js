@@ -3,6 +3,20 @@ import axios from "axios";
 import "./App.css";
 
 const apiEndpoint = "https://jsonplaceholder.typicode.com/posts";
+axios.interceptors.response.use(null, (error) => {
+  console.log("a");
+  const expectedError =
+    error.response &&
+    error.response.status >= 400 &&
+    error.response.status < 500;
+
+  if (!expectedError) {
+    console.log("Logging the error", error);
+    alert("An unexpected error occured!");
+  }
+
+  return Promise.reject(error);
+});
 
 class App extends Component {
   state = {
@@ -40,13 +54,9 @@ class App extends Component {
     try {
       await axios.delete(apiEndpoint + "/" + post.id);
     } catch (ex) {
-      if (ex.response && ex.response.status === "404") {
+      if (ex.response && ex.response.status === 404) {
         alert("This post has already been deleted!");
-      } else {
-        console.log("Logging the error", ex);
-        alert("An unexpected error occured!");
       }
-
       this.setState({ posts: originalPosts });
     }
   };
