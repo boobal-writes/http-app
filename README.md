@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# HTTP-APP
+
+This project is created to learn calling backend services with the help of axios libaray, and includes following.
+
+1. Error handling
+2. Logging
+
+Sentry.io is used to capture errors. Please refer.
+https://sentry.io/organizations/mudivili/projects/http-app/?project=6254896
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
