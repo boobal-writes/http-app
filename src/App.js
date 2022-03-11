@@ -1,21 +1,12 @@
 import React, { Component } from "react";
-import * as Sentry from "@sentry/react";
-import { BrowserTracing } from "@sentry/tracing";
 import { ToastContainer, toast } from "react-toastify";
 import http from "./services/httpService";
+import logger from "./services/logService";
 import config from "./config.json";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
-Sentry.init({
-  dsn: "https://c5d22286a1d84dc4bcbfb9dc8dd8bf87@o338817.ingest.sentry.io/6254896",
-  integrations: [new BrowserTracing()],
-
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 1.0,
-});
+logger.init();
 
 class App extends Component {
   state = {
